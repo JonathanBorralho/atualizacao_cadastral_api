@@ -1,0 +1,36 @@
+package br.gov.ma.caema.atualizacaocadastral.resource;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import br.gov.ma.caema.atualizacaocadastral.domain.Imovel;
+import br.gov.ma.caema.atualizacaocadastral.domain.Roteiro;
+import br.gov.ma.caema.atualizacaocadastral.repository.RoteiroRepository;
+import br.gov.ma.caema.atualizacaocadastral.service.RoteiroService;
+
+@RestController
+@RequestMapping("/roteiros")
+public class RoteiroResource {
+
+	@Autowired
+	private RoteiroRepository roteiroRepository;
+
+	@Autowired
+	private RoteiroService roteiroService;
+
+	@GetMapping
+	public List<Roteiro> listar() {
+		return roteiroRepository.findAll();
+	}
+
+	@GetMapping("/{id}/imoveis")
+	public List<Imovel> listarImoveisPorId(@PathVariable Long id) {
+		final Roteiro roteiro = roteiroService.buscarOuFalhar(id);
+		return roteiro.getImoveis();
+	}
+}
