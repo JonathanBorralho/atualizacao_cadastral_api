@@ -23,6 +23,9 @@ public class Usuario {
 	private Long id;
 	private String matricula;
 	private String nome;
+	
+	@JsonIgnore
+	private String senha;
 
 	@JsonIgnore
 	@ManyToMany

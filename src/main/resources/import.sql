@@ -1,9 +1,9 @@
 insert into papel (id, nome) values (1, 'CADASTRANTE');
 insert into papel (id, nome) values (2, 'COMERCIAL');
 
-insert into usuario (id, matricula, nome) values (1, '000001', 'João da Silva');
-insert into usuario (id, matricula, nome) values (2, '000002', 'Marcos Ribeiro');
-insert into usuario (id, matricula, nome) values (3, '451161', 'Guilherme Santos');
+insert into usuario (id, matricula, nome, senha) values (1, '000001', 'João da Silva', '$2a$10$b8hsGmxsdOjJQI9wMIjQAeP.P59lEjqkYtp6Ul19H1.Us7GuYPv.S');
+insert into usuario (id, matricula, nome, senha) values (2, '000002', 'Marcos Ribeiro', '$2a$10$b8hsGmxsdOjJQI9wMIjQAeP.P59lEjqkYtp6Ul19H1.Us7GuYPv.S');
+insert into usuario (id, matricula, nome, senha) values (3, '451161', 'Guilherme Santos', '$2a$10$b8hsGmxsdOjJQI9wMIjQAeP.P59lEjqkYtp6Ul19H1.Us7GuYPv.S');
 
 -- CADASTRANTES
 insert into usuario_papel (usuario_id, papel_id) values (1, 1);
