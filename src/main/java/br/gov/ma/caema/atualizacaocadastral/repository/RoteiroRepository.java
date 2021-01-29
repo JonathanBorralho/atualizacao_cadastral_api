@@ -9,4 +9,6 @@ import br.gov.ma.caema.atualizacaocadastral.domain.Roteiro;
 public interface RoteiroRepository extends JpaRepository<Roteiro, Long> {
 
 	List<Roteiro> findByCadastranteId(Long cadastranteId);
+	
+	List<Roteiro> findByCadastranteMatricula(String matricula);
 }

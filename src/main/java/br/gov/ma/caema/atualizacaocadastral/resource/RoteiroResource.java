@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.gov.ma.caema.atualizacaocadastral.auth.AuthSecurity;
 import br.gov.ma.caema.atualizacaocadastral.domain.Imovel;
 import br.gov.ma.caema.atualizacaocadastral.domain.Roteiro;
 import br.gov.ma.caema.atualizacaocadastral.repository.RoteiroRepository;
@@ -22,10 +23,14 @@ public class RoteiroResource {
 
 	@Autowired
 	private RoteiroService roteiroService;
+	
+	@Autowired
+	private AuthSecurity authSecurity;
 
 	@GetMapping
 	public List<Roteiro> listar() {
-		return roteiroRepository.findAll();
+		final String matricula = authSecurity.getMatriculaUsuario();
+		return roteiroRepository.findByCadastranteMatricula(matricula);
 	}
 
 	@GetMapping("/{id}/imoveis")
