@@ -1,6 +1,7 @@
 package br.gov.ma.caema.atualizacaocadastral.resource;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +13,7 @@ import br.gov.ma.caema.atualizacaocadastral.auth.AuthSecurity;
 import br.gov.ma.caema.atualizacaocadastral.domain.Imovel;
 import br.gov.ma.caema.atualizacaocadastral.domain.Roteiro;
 import br.gov.ma.caema.atualizacaocadastral.repository.RoteiroRepository;
+import br.gov.ma.caema.atualizacaocadastral.repository.dto.RoteiroDTO;
 import br.gov.ma.caema.atualizacaocadastral.service.RoteiroService;
 
 @RestController
@@ -28,9 +30,13 @@ public class RoteiroResource {
 	private AuthSecurity authSecurity;
 
 	@GetMapping
-	public List<Roteiro> listar() {
+	public List<RoteiroDTO> listar() {
 		final String matricula = authSecurity.getMatriculaUsuario();
-		return roteiroRepository.findByCadastranteMatricula(matricula);
+		return roteiroRepository
+				.findByCadastranteMatricula(matricula)
+				.stream()
+				.map(RoteiroDTO::fromRoteiro)
+				.collect(Collectors.toList());
 	}
 
 	@GetMapping("/{id}/imoveis")
