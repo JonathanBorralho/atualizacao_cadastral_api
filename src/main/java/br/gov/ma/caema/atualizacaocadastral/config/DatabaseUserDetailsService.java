@@ -1,18 +1,13 @@
 package br.gov.ma.caema.atualizacaocadastral.config;
 
-import java.util.Collection;
-import java.util.stream.Collectors;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import br.gov.ma.caema.atualizacaocadastral.auth.AuthUser;
 import br.gov.ma.caema.atualizacaocadastral.domain.Usuario;
 import br.gov.ma.caema.atualizacaocadastral.repository.UsuarioRepository;
 
@@ -28,14 +23,7 @@ public class DatabaseUserDetailsService implements UserDetailsService {
 		Usuario user = usuarioRepo.findByMatricula(matricula)
 				.orElseThrow(() -> new UsernameNotFoundException("Matrícula e/ou senha inválidas"));
 
-		return new User(matricula, user.getSenha(), getAuthorities(user));
-	}
-
-	private Collection<? extends GrantedAuthority> getAuthorities(Usuario user) {
-		return user.getPapeis()
-				.stream()
-				.map(p -> new SimpleGrantedAuthority("ROLE_".concat(p.getNome())))
-				.collect(Collectors.toList());
+		return new AuthUser(user);
 	}
 
 }
