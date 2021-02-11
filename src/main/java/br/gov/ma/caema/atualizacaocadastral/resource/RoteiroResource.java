@@ -13,7 +13,7 @@ import br.gov.ma.caema.atualizacaocadastral.auth.AuthSecurity;
 import br.gov.ma.caema.atualizacaocadastral.domain.Imovel;
 import br.gov.ma.caema.atualizacaocadastral.domain.Roteiro;
 import br.gov.ma.caema.atualizacaocadastral.repository.RoteiroRepository;
-import br.gov.ma.caema.atualizacaocadastral.repository.dto.RoteiroDTO;
+import br.gov.ma.caema.atualizacaocadastral.resource.response.RoteiroResumo;
 import br.gov.ma.caema.atualizacaocadastral.service.RoteiroService;
 
 @RestController
@@ -30,12 +30,12 @@ public class RoteiroResource {
 	private AuthSecurity authSecurity;
 
 	@GetMapping
-	public List<RoteiroDTO> listar() {
+	public List<RoteiroResumo> listar() {
 		final String matricula = authSecurity.getMatriculaUsuario();
 		return roteiroRepository
 				.findByCadastranteMatricula(matricula)
 				.stream()
-				.map(RoteiroDTO::fromRoteiro)
+				.map(RoteiroResumo::fromRoteiro)
 				.collect(Collectors.toList());
 	}
 
