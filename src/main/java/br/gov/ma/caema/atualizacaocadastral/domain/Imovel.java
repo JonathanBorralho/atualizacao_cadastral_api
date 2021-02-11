@@ -21,4 +21,24 @@ public class Imovel {
 
 	@Embedded
 	private Endereco endereco;
+
+	@Embedded
+	private Cliente cliente;
+
+	@Embedded
+	private Subcategorias subcategorias;
+
+	@Embedded
+	private Caracteristicas caracteristicas;
+
+	@Embedded
+	private Conclusao conclusao;
+
+	@Embedded
+	private Hidrometro hidrometro;
+
+	@Embedded
+	private Coordenadas coordenadas;
+	
+	private String observacao;
 }
