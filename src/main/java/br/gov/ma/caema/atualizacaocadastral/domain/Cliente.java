@@ -1,5 +1,7 @@
 package br.gov.ma.caema.atualizacaocadastral.domain;
 
+import java.time.LocalDate;
+
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
@@ -26,7 +28,7 @@ public class Cliente {
 
 	@Column(name = "data_emissao")
 	@JsonProperty(value = "data_emissao")
-	private String dataEmissao;
+	private LocalDate dataEmissao;
 	
 	@Column(name = "tipo_cliente")
 	@JsonProperty(value = "tipo_cliente")
@@ -38,7 +40,7 @@ public class Cliente {
 	
 	@Column(name = "data_nascimento")
 	@JsonProperty(value = "data_nascimento")
-	private String dataNascimento;
+	private LocalDate dataNascimento;
 	
 	@Column(name = "nome_mae")
 	@JsonProperty(value = "nome_mae")

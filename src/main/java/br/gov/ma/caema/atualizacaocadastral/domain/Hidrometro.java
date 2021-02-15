@@ -1,5 +1,7 @@
 package br.gov.ma.caema.atualizacaocadastral.domain;
 
+import java.time.LocalDate;
+
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
@@ -15,6 +17,6 @@ public class Hidrometro {
 
 	@JsonProperty("data_leitura")
 	@Column(name = "data_leitura")
-	private String dataLeitura;
+	private LocalDate dataLeitura;
 
 }
